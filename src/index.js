@@ -24,7 +24,7 @@ app.use("/pets", petsRouter);
 /* CATCH-ALL TO TEST ROUTES */
 
 app.get("*", (req, res) => {
-  res.json({ ok: 'Hello World' });
+  res.status(200).send('Server Ready');
 });
 
 /* START SERVER */

@@ -2,7 +2,11 @@ const express = require("express");
 
 const router = express.Router();
 
-const { createBook, getAllBooks, getBookbyAuthor, getBookbyType, getBookById, } = require("./controller");
+const { createBook, getAllBooks, getBookbyAuthor, getBookbyType, getBookById, updateOneById, updateOneByTitle } = require("./controller");
+
+router.put("/:id", updateOneById)
+
+router.put("/title/:title", updateOneByTitle)
 
 router.post("/", createBook);
 

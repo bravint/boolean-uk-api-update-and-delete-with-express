@@ -107,7 +107,7 @@ function Book() {
         });
     };
 
-    getBookbyAuthor = (author) => {
+    const getBookbyAuthor = (author) => {
         const getBookbyAuthor = `
             SELECT * 
             FROM books 
@@ -120,6 +120,31 @@ function Book() {
             .catch(console.error);
     };
 
+    const updateOneById = (columnName, columnValue, id) => {
+        const updateOneById =  `
+            UPDATE books 
+            SET ${columnName} = $1        
+            WHERE id = ${id};
+        `;
+    return db
+        .query(updateOneById, [columnValue])
+        .then((result) => result.rows[0])
+        .catch(console.error);
+    }
+
+    
+    const updateOneByTitle = (columnName, columnValue, title) => {
+        const updateOneByTitle =  `
+            UPDATE books 
+            SET ${columnName} = $1        
+            WHERE title = ${title};
+        `;
+    return db
+        .query(updateOneByTitle, [columnValue])
+        .then((result) => result.rows[0])
+        .catch(console.error);
+    }
+
     return {
         init,
         createBook,
@@ -128,6 +153,8 @@ function Book() {
         getBookbyType,
         getFilteredBookbyType,
         getBookbyAuthor,
+        updateOneById,
+        updateOneByTitle
     };
 }
 
